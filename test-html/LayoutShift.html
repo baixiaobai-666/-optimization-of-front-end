@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input />
+  <script>
+    const observer = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        // Count layout shifts without recent user input only
+        if (!entry.hadRecentInput) {
+          console.log("LayoutShift value:", entry.value);
+          if (entry.sources) {
+            for (const { node, currentRect, previousRect } of entry.sources)
+              console.log("LayoutShift source:", node, {
+                currentRect,
+                previousRect,
+              });
+          }
+        }
+      }
+    });
+
+    observer.observe({ type: "layout-shift", buffered: true });
+
+  </script>
+  <img id="image0" src="https://www.w3.org/Icons/w3c_home.png">
+</body>
+
+</html>

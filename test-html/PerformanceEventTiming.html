@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <input type="text" />
+    <a href="https://github.com/baixiaobai-666/-optimization-of-front-end">Author: https://github.com/baixiaobai-666/-optimization-of-front-end</a>
+
+  </div>
+  <script>
+    const observer = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry) => {
+        // Full duration
+        console.log(entry);
+        const duration = entry.duration;
+
+        // Input delay (before processing event)
+        const delay = entry.processingStart - entry.startTime;
+
+        // Synchronous event processing time
+        // (between start and end dispatch)
+        const eventHandlerTime = entry.processingEnd - entry.processingStart;
+        console.log(`Total duration: ${duration}`);
+        console.log(`Event delay: ${delay}`);
+        console.log(`Event handler duration: ${eventHandlerTime}`);
+      });
+    });
+
+    // Register the observer for events
+    observer.observe({ type: ["event"], durationThreshold: 16, buffered: true });
+  </script>
+</body>
+
+</html>
