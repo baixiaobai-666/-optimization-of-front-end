@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const observer = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        console.log(entry);
+      }
+    });
+    observer.observe({ type: "largest-contentful-paint", buffered: true });
+
+  </script>
+  <img id="image0" src="https://www.w3.org/Icons/w3c_home.png">
+</body>
+
+</html>
