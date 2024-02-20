@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    (function testURLLength() {
+        var base = window.location.href + '?'; // 获取当前页面的基础URL
+        var maxLength = 2000; // 初始长度设置为2000，可以根据需要调整
+        var increment = 1000; // 每次增加的长度
+
+        // 函数用于测试特定长度的URL是否能够被浏览器接受
+        function tryURL(length) {
+            var url = base + 'b=' + new Array(length + 1).join('a'); // 创建一个长字符串作为URL的一部分
+            try {
+                // 尝试打开一个新窗口或标签页
+                window.location.href = url;
+                window.focus();
+            } catch (e) {
+                // 如果URL过长导致无法打开，则捕获异常
+                console.log('Browser does not support URL with length:', length);
+                maxLengthFound = true;
+                localStorage.setItem('maxLengthFound', true)
+            }
+        }
+        // 递归测试URL长度
+        tryURL(maxLength);
+    })();
+  </script>
+  <div>1</div>
+</body>
+</html>

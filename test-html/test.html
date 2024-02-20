@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.1.1/aes.js"></script>    <script>
+
+    var aseKey = "12345678";  // 定制密钥，长度必须为
+    var message = "i am kun, who are you";
+    // 加密
+    var encrypt = CryptoJS.DES.encrypt(message, CryptoKey.enc.Utf8.parse(aseKey), {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    }).toString();
+    alert(encrypt);
+    // 解密
+    var decrypt = CryptoJS.DES.decrypt(encrypt, CryptoJS.enc.Utf8.parse(aseKey), {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    }).toString();
+    alert(decrypt)
+</script>
+
+</body>
+</html>
